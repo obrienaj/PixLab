@@ -12,6 +12,30 @@ public class IntArrayWorker {
 		matrix = theMatrix;
 	}
 
+	public int getCount(int i){
+		int total = 0;
+		for (int[] rowArray : matrix){
+			for (int item : rowArray){
+				if (item == i){
+					total++;
+				}
+			}
+		}
+		return total;
+	
+	}
+	public int getLargest(){
+		int largest = matrix[0][0];
+		for (int[] rowArray : matrix){
+			for (int item : rowArray){
+				if (item > largest){
+					largest = item;
+				}
+			}
+		}
+		return largest;
+	}
+
 	/**
 	 * Method to return the total
 	 * 
