@@ -179,8 +179,8 @@ public class Picture extends SimplePicture {
 		Pixel topPixel = null;
 		Pixel bottomPixel = null;
 		int width = pixels[0].length;
-		for (int row = 0; row < pixels.length; row++) {
-			for (int col = 0; col < width / 2; col++) {
+		for (int row = 0; row < pixels.length / 2; row++) {
+			for (int col = 0; col < width; col++) {
 				topPixel = pixels[row][col];
 				bottomPixel = pixels[row - 1 - col][width];
 				bottomPixel.setColor(topPixel.getColor());
