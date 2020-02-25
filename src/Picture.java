@@ -302,13 +302,46 @@ public class Picture extends SimplePicture {
 		}
 	}
 
+	public void copy(Picture fromPic, int fromStartRow, int fromEndRow, int fromStartCol, 
+	int fromEndCol, int startRow, int startCol) {
+		Pixel fromPixel = null;
+		Pixel toPixel = null;
+		Pixel[][] toPixels = this.getPixels2D();
+		Pixel[][] fromPixels = fromPic.getPixels2D();
+		for (int fromRow = fromStartRow, toRow = startRow; fromRow < fromPixels.length
+				&& toRow < toPixels.length && fromRow <= fromEndRow; fromRow++, toRow++) {
+			for (int fromCol = fromStartCol, toCol = startCol; fromCol < fromPixels[0].length
+					&& toCol < toPixels[0].length && fromCol <= fromEndCol; fromCol++, toCol++) {
+				fromPixel = fromPixels[fromRow][fromCol];
+				toPixel = toPixels[toRow][toCol];
+				toPixel.setColor(fromPixel.getColor());
+			}
+		}
+	}
+
 	/** Method to create a collage of several pictures */
 	public void createCollage() {
 		Picture flower1 = new Picture("flower1.jpg");
 		Picture flower2 = new Picture("flower2.jpg");
-		this.copy(flower1, 0, 0);
-		this.copy(flower2, 100, 0);
-		this.copy(flower1, 200, 0);
+		this.copy(flower1, 0, 50, 0, 50, 0, 0);
+		this.copy(flower2, 0, 50, 0, 50, 100, 0);
+		this.copy(flower1, 0, 50, 0, 50, 200, 0);
+		Picture flowerNoBlue = new Picture(flower2);
+		flowerNoBlue.zeroBlue();
+		this.copy(flowerNoBlue, 300, 0);
+		this.copy(flower1, 400, 0);
+		this.copy(flower2, 500, 0);
+		this.mirrorVertical();
+		this.write("collage.jpg");
+	}
+	
+	public void myCollage() {
+		Picture robot = new Picture("robot.jpg");
+		Picture butterfly = new Picture("butteryfly1.jpg");
+		Picture motorcycle = new Picture("blueMotorcycle.jpg");
+		this.copy(robot, 0, 50, 0, 50, 0, 0);
+		this.copy(butterfly, 0, 50, 0, 50, 100, 0);
+		this.copy(motorcycle, 0, 50, 0, 50, 200, 0);
 		Picture flowerNoBlue = new Picture(flower2);
 		flowerNoBlue.zeroBlue();
 		this.copy(flowerNoBlue, 300, 0);
