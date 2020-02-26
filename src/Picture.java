@@ -336,17 +336,17 @@ public class Picture extends SimplePicture {
 	}
 	
 	public void myCollage() {
+		Pixel[][] pixels = this.getPixels2D();
 		Picture robot = new Picture("robot.jpg");
-		Picture butterfly = new Picture("butteryfly1.jpg");
+		Picture butterfly = new Picture("butterfly1.jpg");
 		Picture motorcycle = new Picture("blueMotorcycle.jpg");
 		this.copy(robot, 0, 50, 0, 50, 0, 0);
-		this.copy(butterfly, 0, 50, 0, 50, 100, 0);
-		this.copy(motorcycle, 0, 50, 0, 50, 200, 0);
-		Picture flowerNoBlue = new Picture(flower2);
-		flowerNoBlue.zeroBlue();
-		this.copy(flowerNoBlue, 300, 0);
-		this.copy(flower1, 400, 0);
-		this.copy(flower2, 500, 0);
+		this.copy(butterfly, 0 , pixels.length / 4);
+		this.copy(motorcycle, 100, 250, 0, 639, pixels.length / 4, 0);
+		Picture butterflyNoBlue = new Picture(butterfly);
+		butterflyNoBlue.zeroBlue();
+		this.copy(butterflyNoBlue, pixels.length / 2, 0);
+		this.copy(robot, 400, 0);
 		this.mirrorVertical();
 		this.write("collage.jpg");
 	}
