@@ -371,16 +371,11 @@ public class Picture extends SimplePicture {
 				bottomPixel = pixels[row + 1][col];
 				rightColor = rightPixel.getColor();
 				bottomColor = bottomPixel.getColor();
-				if (leftPixel.colorDistance(rightColor) > edgeDist)
+				if (leftPixel.colorDistance(rightColor) > edgeDist
+				|| leftPixel.colorDistance(bottomColor) > edgeDist)
 					leftPixel.setColor(Color.BLACK);
 				else
 					leftPixel.setColor(Color.WHITE);
-
-				// if (leftPixel.colorDistance(bottomColor) > edgeDist)
-				// 	leftPixel.setColor(Color.BLACK);
-				// else
-				// 	leftPixel.setColor(Color.WHITE);
-				
 			}
 		}
 	}
